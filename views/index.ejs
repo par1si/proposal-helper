@@ -7,11 +7,36 @@
     <title>Proposal Helper</title>
 </head>
 <body>
-    <h1>How are you doing for the quarter?</h1>
-    <form>
-        <input type="text" placeholder="Type in your current attainment here.">
-    </form>
-    <h1> What is the structure of the current deal?</h1>
+    <div>
+        <h1>How is your comp plan structured?</h1>
+    </div>
+    <div class="quarterly-variable-comp-div">
+        <form>
+            <label>Quarterly Quota:</label>
+                <input type="text" name="quarterly-quota" id="quarterly-quota" placeholder="237500">
+            <label>Annualized Variable Compensation:</label>
+                <input type="text" name="variable-comp" id="variable-comp" placeholder="80000">
+        </form>
+    <div>
+        <h2>Current ICR:</h2>
+        <h2 id="current-icr-output"></h2>
+    </div>
+    </div>
+    <div>
+        <h1>How are you doing for the quarter?</h1>
+    </div>
+    <div>
+        <h2>Percentage to Quota:</h2>
+        <h2 id="percentage-to-quota-output"></h2>
+    </div>
+    <div>
+        <form>
+            <input type="text" placeholder="200000" id="current-attainment">
+        </form>
+    </div>
+    <div>
+        <h1> What is the structure of the current deal?</h1>
+    </div>
         <form>
             <label>Current Term Length in Years</label>
                 <input type="text" name="current-term-length" id="current-term-length" placeholder="2">
@@ -29,6 +54,7 @@
         </form>
         <button id="submit">Submit</button>
     <div>
+        <h2>Expected Payout:</h2>
         <h2 id="current-deal-commission"></h2>
     </div>
     <script src="/js/index.js"></script>
