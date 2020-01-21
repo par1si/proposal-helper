@@ -29,6 +29,9 @@ let totalCommission
 let basePayout
 let acceleratorPayoutOne
 let acceleratorPayoutTwo
+
+let multiYearICRPercentage = .04
+let servicesICRPercentage = .01
 let acceleratorMultiplierOne = 2
 let acceleratorMultiplierTwo = 2.5
 let acceleratorMultiplierThree = 1.5
@@ -93,8 +96,8 @@ function getACVCommission () {
 };
 
 function calculateCommission () {
-    multiYearCommission = (.04 * currentMultiYearRevenue)
-    servicesCommission = (.01 * currentServicesHours)
+    multiYearCommission = (multiYearICRPercentage * currentMultiYearRevenue)
+    servicesCommission = (servicesICRPercentage * currentServicesHours)
     getACVCommission()
     totalCommission = acvCommission + multiYearCommission + servicesCommission
 };
