@@ -99,6 +99,10 @@ input::placeholder {
     opacity: .5;
 }
 
+input:invalid:required {
+    border: solid 1px red;
+}
+
 label {
     margin-left: 1rem;
     margin-right: 1rem;
