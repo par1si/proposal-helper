@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        window.onload = function(){document.body.style.opacity="100";}
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -12,6 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
 </head>
 <body>
+    <style> body  {transition: opacity, .75s; opacity:0; }</style>
     <div class="hero">
         <h1 class="hero-text">Digital <br> Proposal Helper</h1>
         <div class="hero-text-divider"></div>
@@ -87,6 +91,5 @@
             <h2 class="percentage-to-quota-output-header" id="percentage-to-quota-output-header" >Percentage to Quota:</h2>
             <h2 id="percentage-to-quota-output"></h2>
     </div>
-    <script src="/js/index.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@ body {
     margin: 0;
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 100;
+    transition: opacity .1s;
 }
 
 h1 {
