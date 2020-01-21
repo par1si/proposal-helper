@@ -13,9 +13,9 @@
     <div class="quarterly-variable-comp-div">
         <form>
             <label>Quarterly Quota:</label>
-                <input type="number" name="quarterly-quota" id="quarterly-quota" placeholder="237500">
+                <input type="number" name="quarterly-quota" id="quarterly-quota" placeholder="237500" required>
             <label>Annualized Variable Compensation:</label>
-                <input type="number" name="variable-comp" id="variable-comp" placeholder="80000">
+                <input type="number" name="variable-comp" id="variable-comp" placeholder="80000" required>
         </form>
     <div>
         <h2>Current ICR:</h2>
@@ -32,7 +32,7 @@
     <div>
         <form>
             <label>Current Attainment:</label>
-            <input type="number" placeholder="200000" id="current-attainment">
+            <input type="number" placeholder="200000" id="current-attainment" required>
         </form>
     </div>
     <div>
@@ -40,13 +40,13 @@
     </div>
         <form>
             <label>Current Term Length in Years</label>
-                <input type="number" name="current-term-length" id="current-term-length" placeholder="2">
+                <input type="number" name="current-term-length" id="current-term-length" placeholder="2" required>
             <label>Current ACV</label>
-                <input type="number" name="current-acv" id="current-acv" placeholder="100000">
+                <input type="number" name="current-acv" id="current-acv" placeholder="100000" required>
             <label>Current Revenue in Years 2+</label>
-                <input type="number" name="current-multi-year-revenue" id="current-multi-year-revenue" placeholder="100000">
+                <input type="number" name="current-multi-year-revenue" id="current-multi-year-revenue" placeholder="100000" required>
             <label>Current Services Hours</label>
-                <input type="number" name="current-services-hours" id="current-services-hours" placeholder="80">
+                <input type="number" name="current-services-hours" id="current-services-hours" placeholder="80" required>
             <label>Current Payment Terms</label>
             <select id="current-payment-terms">
                 <option value="Annual" name="annual-payments" selected>Annual</option>
