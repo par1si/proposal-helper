@@ -103,7 +103,7 @@ function calculateCommission () {
 };
 
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return (x.toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function changeText () {
