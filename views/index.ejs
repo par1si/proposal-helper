@@ -5,60 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Proposal Helper</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
-        <h1>How is your comp plan structured?</h1>
+    <div class="hero">
+        <h1 class="hero-text">Digital <br> Proposal Helper</h1>
+        <div class="hero-text-divider"></div>
     </div>
+    <div class="form-body">
+    <div class="comp-details">
+        <h1 class="comp-details-main-header">How is your comp plan structured?</h1>
     <div class="quarterly-variable-comp-div">
-        <form>
+        <form class="quarterly-variable-comp-div">
             <label>Quarterly Quota:</label>
-                <input type="number" name="quarterly-quota" id="quarterly-quota" placeholder="237500" required>
+                <input type="number" name="quarterly-quota" id="quarterly-quota" placeholder="e.g. 237500" required>
+            <br>
             <label>Annualized Variable Compensation:</label>
-                <input type="number" name="variable-comp" id="variable-comp" placeholder="80000" required>
-        </form>
-    <div>
-        <h2>Current ICR:</h2>
-        <h2 id="current-icr-output"></h2>
-    </div>
-    </div>
-    <div>
-        <h1>How are you doing for the quarter?</h1>
-    </div>
-    <div>
-        <h2>Percentage to Quota:</h2>
-        <h2 id="percentage-to-quota-output"></h2>
-    </div>
-    <div>
-        <form>
-            <label>Current Attainment:</label>
-            <input type="number" placeholder="200000" id="current-attainment" required>
+                <input type="number" name="variable-comp" id="variable-comp" placeholder="e.g. 80000" required>
         </form>
     </div>
-    <div>
-        <h1> What is the structure of the current deal?</h1>
     </div>
-        <form>
-            <label>Current Term Length in Years</label>
-                <input type="number" name="current-term-length" id="current-term-length" placeholder="2" required>
-            <label>Current ACV</label>
-                <input type="number" name="current-acv" id="current-acv" placeholder="100000" required>
-            <label>Current Revenue in Years 2+</label>
-                <input type="number" name="current-multi-year-revenue" id="current-multi-year-revenue" placeholder="100000" required>
-            <label>Current Services Hours</label>
-                <input type="number" name="current-services-hours" id="current-services-hours" placeholder="80" required>
-            <label>Current Payment Terms</label>
-            <select id="current-payment-terms">
-                <option value="Annual" name="annual-payments" selected>Annual</option>
-                <option value="Semi-Annual or Quarterly" name="semi-annual-payments">Semi-Annual or Quarterly</option>
-            </select>
-        </form>
-        <div>
-            <button id="submit">Submit</button>
+    <div class="percentage-to-quota">
+        <div class="percentage-to-quota-header">
+            <h1>How are you doing for the quarter?</h1>
         </div>
-    <div>
-        <h2>Expected Payout:</h2>
-        <h2 id="current-deal-commission"></h2>
+        <div class="percentage-to-quota-body">
+            <div>
+                <form>
+                    <label>Current Attainment:</label>
+                    <input type="number" placeholder="e.g. 200000" id="current-attainment" required>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="current-deal-form">
+        <div>
+            <h1> What is the structure of the current deal?</h1>
+        </div>
+            <form>
+                <label>Current Term Length in Years:</label>
+                    <input type="number" name="current-term-length" id="current-term-length" placeholder="e.g. 2" required>
+                <br>
+                <label>Current ACV:</label>
+                    <input type="number" name="current-acv" id="current-acv" placeholder="e.g. 100000" required>
+                <br>
+                <label>Current Revenue in Years 2+:</label>
+                    <input type="number" name="current-multi-year-revenue" id="current-multi-year-revenue" placeholder="e.g. 100000" required>
+                <br>
+                <label>Current Services Hours:</label>
+                    <input type="number" name="current-services-hours" id="current-services-hours" placeholder="e.g. 80" required>
+                <br>    
+                <label>Current Payment Terms:</label>
+                <select id="current-payment-terms">
+                    <option value="Annual" name="annual-payments" selected>Annual</option>
+                    <option value="Semi-Annual or Quarterly" name="semi-annual-payments">Semi-Annual or Quarterly</option>
+                </select>
+                <br>
+            </form>
+            <div>
+                <br>
+                <button class="submit-button" id="submit">Submit</button>
+            </div>
+        <div>
+            <h2 class= "expected-payout" id="expected-payout">Expected Payout:</h2>
+            <h2 id="current-deal-commission"></h2>
+        </div>
+        <div>
+            <h2 class="percentage-to-quota-output-header" id="percentage-to-quota-output-header" >Percentage to Quota:</h2>
+            <h2 id="percentage-to-quota-output"></h2>
+        </div>
+        </div>
     </div>
     <script src="/js/index.js"></script>
 </body>

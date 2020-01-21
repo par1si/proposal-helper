@@ -1,5 +1,7 @@
 const button = document.getElementById('submit');
 const currentDealCommission = document.getElementById('current-deal-commission');
+const expectedPayout = document.getElementById('expected-payout');
+const percentageToQuotaHeader = document.getElementById('percentage-to-quota-output-header')
 const currentICROutput = document.getElementById('current-icr-output');
 const percentageToQuotaOutput = document.getElementById('percentage-to-quota-output');
 
@@ -96,9 +98,14 @@ function calculateCommission () {
     totalCommission = acvCommission + multiYearCommission + servicesCommission
 };
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 function changeText () {
-    currentDealCommission.innerHTML = totalCommission
-    currentICROutput.innerHTML = displayedICR + `%`
+    currentDealCommission.innerHTML = `$${numberWithCommas(totalCommission)}`
+    expectedPayout.style = 'display: inline-block'
+    percentageToQuotaHeader.style = 'display: inline-block'
     percentageToQuotaOutput.innerHTML = percentageToQuotaWithDeal + `%`
 };
 

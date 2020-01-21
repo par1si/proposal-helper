@@ -1,0 +1,142 @@
+/* Document-wide Styling */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 100;
+}
+
+h1 {
+    font-weight: 100;
+    margin-bottom: 2rem;
+    padding: 0;
+}
+
+h2 {
+    display: inline-block;
+    font-weight: 100;
+    margin: 0;
+    padding-left: 1rem;
+}
+
+.hero {
+    position: relative;
+    background: url(../images/hero.jpg);
+    background-size: cover;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh;
+}
+
+.hero-text {
+    margin-top: 27rem;
+    margin-left: 10rem;
+    font-size: 60px;
+}
+
+.hero-text-divider {
+    position: absolute;
+    width: 9.3rem;
+    height: 0px;
+    margin-top: -6.3rem;
+    margin-left: 10rem;
+
+    border: .5px solid #000000;
+}
+
+/* Styling the forms */
+.form-body {
+    position: relative;
+    background-color: #E6E7E9;
+}
+
+input {
+    outline: none;
+    border-radius: 3px;
+    height: .5rem;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    margin-bottom: 2rem;
+}
+
+form {
+    font-size: 16px;
+}
+
+select {
+    outline: none;
+    font-size: 14px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input::placeholder {
+    opacity: .5;
+}
+
+label {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.comp-details {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    text-align: center;
+}
+
+.quarterly-variable-comp-div {
+    margin-bottom: 2rem;
+}
+
+.percentage-to-quota {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    text-align: center;
+}
+
+.current-deal-form {
+    margin-top: 10rem;
+    text-align: center;
+}
+
+/* Styling the button */
+
+.submit-button {
+    margin: 2rem;
+    width: 7rem;
+    height: 2rem;
+    outline: none;
+    cursor: pointer;
+    font-size: 14px;
+
+    border: 1px solid #000000;
+
+    border: none;
+    border-radius: 3px;
+
+    transition: box-shadow .1s;
+}
+
+.submit-button:hover {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+}
+
+.expected-payout {
+    display: none;
+    margin-bottom: 1rem;
+}
+
+.percentage-to-quota-output-header {
+    display: none;
+}
