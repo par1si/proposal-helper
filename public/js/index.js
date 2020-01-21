@@ -6,6 +6,7 @@ const expectedPayoutHeader = document.getElementById('expected-payout-header');
 const currentICROutput = document.getElementById('current-icr-output');
 const percentageToQuotaOutput = document.getElementById('percentage-to-quota-output');
 
+
 // Declaring variable outside of the functions below so that they're in the global scope
 let quarterlyQuotaValue
 let variableCompValue

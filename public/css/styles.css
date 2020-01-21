@@ -35,7 +35,7 @@ h2 {
 }
 
 .hero-text {
-    margin-top: 70vh;
+    margin-top: 60vh;
     margin-left: 10vh;
     font-size: 60px;
 }
@@ -44,10 +44,15 @@ h2 {
     position: absolute;
     width: 9.3rem;
     height: 0px;
-    margin-top: -6.3rem;
+    margin-top: -1rem;
     margin-left: 10vh;
 
     border: .5px solid #000000;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    margin-left: 10vh;
 }
 
 /* Styling the forms */
