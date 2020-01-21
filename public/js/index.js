@@ -1,7 +1,8 @@
 const button = document.getElementById('submit');
 const currentDealCommission = document.getElementById('current-deal-commission');
 const expectedPayout = document.getElementById('expected-payout');
-const percentageToQuotaHeader = document.getElementById('percentage-to-quota-output-header')
+const percentageToQuotaHeader = document.getElementById('percentage-to-quota-output-header');
+const expectedPayoutHeader = document.getElementById('expected-payout-header');
 const currentICROutput = document.getElementById('current-icr-output');
 const percentageToQuotaOutput = document.getElementById('percentage-to-quota-output');
 
@@ -106,7 +107,9 @@ function changeText () {
     currentDealCommission.innerHTML = `$${numberWithCommas(totalCommission)}`
     expectedPayout.style = 'display: inline-block'
     percentageToQuotaHeader.style = 'display: inline-block'
+    expectedPayoutHeader.style = 'display: inline-block'
     percentageToQuotaOutput.innerHTML = percentageToQuotaWithDeal + `%`
+    percentageToQuotaHeader.scrollIntoView()
 };
 
 button.addEventListener('click', getValues);
