@@ -7,6 +7,7 @@ const currentICROutput = document.getElementById('current-icr-output');
 const percentageToQuotaOutput = document.getElementById('percentage-to-quota-output');
 const recommendedOneYearDeal = document.getElementById('recommended-one-year-deal');
 const recommendedThreeYearDeal = document.getElementById('recommended-three-year-deal');
+const recommendedDealDiv = document.getElementById('recommended-deals-container')
 
 
 // Declaring variable outside of the functions below so that they're in the global scope
@@ -151,10 +152,24 @@ function numberWithCommas(x) {
 
 function changeText () {
     currentDealCommission.innerHTML = `$${numberWithCommas(totalCommission)}`
-    recommendedOneYearDeal.innerHTML = `The one year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedOneYearDealACV)}, <br>
-    meaning you'll get paid $${numberWithCommas(totalCommission)} on the one-year ACV.`
-    recommendedThreeYearDeal.innerHTML = `The three year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedThreeYearDealACV)}, <br>
-    meaning you'll make $${numberWithCommas(totalCommission - (multiYearCommission * 2))} on the ACV and a multi-year commission of ${numberWithCommas(multiYearCommission * 2)}.`
+
+    recommendedDealDiv.style = 'display: inherit;'
+    recommendedOneYearDeal.innerHTML = `The one year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedOneYearDealACV)}. <br><br>
+    <b><i>Deal Structure:</i></b> <br>
+    <b>ACV:</b> ${numberWithCommas(proposedOneYearDealACV)}<br>
+    <b>Term Length:</b> 1 Year<br>
+    <b>Services Hours:</b> ${currentServicesHours}<br><br>
+    You'll get paid $${numberWithCommas(totalCommission)} on the one-year ACV.`
+    
+    recommendedThreeYearDeal.innerHTML = `The three year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedThreeYearDealACV)}. <br><br>
+    <b><i>Deal Structure:</i></b> <br>
+    <b>ACV:</b> ${numberWithCommas(proposedThreeYearDealACV)}<br>
+    <b>Term Length:</b> 1 Year<br>
+    <b>Services Hours:</b> ${currentServicesHours}<br><br>
+
+    You'll get $${numberWithCommas(totalCommission - (multiYearCommission * 2))} on the ACV <br>
+    and ${numberWithCommas(multiYearCommission * 2)} on the multi-year revenue.`
+
     expectedPayout.style = 'display: inline-block'
     percentageToQuotaHeader.style = 'display: inline-block'
     expectedPayoutHeader.style = 'display: inline-block'

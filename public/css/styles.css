@@ -182,11 +182,43 @@ label {
     padding-bottom: 10rem;
 }
 
+#recommended-deals-container {
+    display: none;
+}
+
 .recommended-deals {
-    margin-top: 3rem;
+    margin: 10vh 10% -6vh;
 }
 
 .recommended-one-year-deal {
-    margin-top: 5rem;
-    margin-bottom: 1rem;
+    display: inline-block;
+    width: 40%;
+    background-color: #E6E7E9;
+    padding: 2rem;
+    vertical-align: middle;
+    height: 25rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    transition: box-shadow, .3s;
+}
+
+.recommended-one-year-deal:hover {
+    box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
+}
+
+.recommended-three-year-deal {
+    display: inline-block;
+    width: 40%;
+    margin-left: 5rem;
+    background-color: #E6E7E9;
+    padding: 2rem;
+    vertical-align: middle;
+    height: 25rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    transition: box-shadow, .3s;
+}
+
+.recommended-three-year-deal:hover {
+    box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
 }
