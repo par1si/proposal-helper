@@ -164,7 +164,7 @@ function changeText () {
     recommendedThreeYearDeal.innerHTML = `The three year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedThreeYearDealACV)}. <br><br>
     <b><i>Deal Structure:</i></b> <br>
     <b>ACV:</b> ${numberWithCommas(proposedThreeYearDealACV)}<br>
-    <b>Term Length:</b> 1 Year<br>
+    <b>Term Length:</b> 3 Year<br>
     <b>Services Hours:</b> ${currentServicesHours}<br><br>
 
     You'll get $${numberWithCommas(totalCommission - (multiYearCommission * 2))} on the ACV <br>
