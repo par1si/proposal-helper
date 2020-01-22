@@ -151,8 +151,10 @@ function numberWithCommas(x) {
 
 function changeText () {
     currentDealCommission.innerHTML = `$${numberWithCommas(totalCommission)}`
-    recommendedOneYearDeal.innerHTML = `The one year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedOneYearDealACV)}.`
-    recommendedThreeYearDeal.innerHTML = `The three year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedThreeYearDealACV)}.`
+    recommendedOneYearDeal.innerHTML = `The one year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedOneYearDealACV)}, <br>
+    meaning you'll get paid $${numberWithCommas(totalCommission)} on the one-year ACV.`
+    recommendedThreeYearDeal.innerHTML = `The three year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedThreeYearDealACV)}, <br>
+    meaning you'll make $${numberWithCommas(totalCommission - (multiYearCommission * 2))} on the ACV and a multi-year commission of ${numberWithCommas(multiYearCommission * 2)}.`
     expectedPayout.style = 'display: inline-block'
     percentageToQuotaHeader.style = 'display: inline-block'
     expectedPayoutHeader.style = 'display: inline-block'
