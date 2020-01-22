@@ -44,6 +44,8 @@ let currentPayout
 
 let proposedOneYearDealACV
 let proposedOneYearDealCommission
+let oneYearCommission
+let threeYearCommission
 
 function getValues () {
     quarterlyQuota = document.getElementById('quarterly-quota').value
@@ -104,22 +106,44 @@ function getACVCommission (num) {
     }
 };
 
+function getThreeYearACVCommission (num) {
+    getBasePayout();
+    getAcceleratorPayoutOne();
+    getAcceleratorPayoutTwo();
+    if (percentageToQuotaWithDeal <= 100) {
+        threeYearCommission = (currentICR * num) + (multiYearCommission * 2)
+    } else if (percentageToQuotaWithDeal <= 125) {
+        threeYearCommission = ((+currentAttainment + num) - +quarterlyQuota) * (currentICR * acceleratorMultiplierOne) + basePayout + (multiYearCommission * 2)
+    } else if (percentageToQuotaWithDeal <= 200) {
+        threeYearCommission = ((+currentAttainment + num) - (+quarterlyQuota * 1.25)) * (currentICR * acceleratorMultiplierTwo) + basePayout + acceleratorPayoutOne + (multiYearCommission * 2)
+    } else if (percentageToQuotaWithDeal > 200) {
+        threeYearCommission = (num * (currentICR * acceleratorMultiplierThree)) +  (multiYearCommission * 2)
+    }
+};
+
 function calculateCommission () {
     multiYearCommission = (multiYearICRPercentage * currentMultiYearRevenue)
     servicesCommission = (servicesICRPercentage * currentServicesHours)
     getACVCommission(currentACV)
+    oneYearCommission = acvCommission
+    threeYearCommission = oneYearCommission + (multiYearCommission * 2)
+    console.log(oneYearCommission)
+    console.log(threeYearCommission)
     totalCommission = acvCommission + multiYearCommission + servicesCommission
 };
 
-// "Recommendation" Algo
+// "Recommendation" Algos
 
-function getRecommendedOneYearDeal () {
-    // 1 Year Option
+function getRecommendedDeals () {
     while (acvCommission < totalCommission) {
         proposedOneYearDealACV ++
         getACVCommission(proposedOneYearDealACV)
     }
-}
+    while (threeYearCommission > totalCommission) {
+        proposedThreeYearDealACV --
+        getThreeYearACVCommission(proposedThreeYearDealACV)
+    }
+};
 
 function numberWithCommas(x) {
     return (x.toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -128,6 +152,7 @@ function numberWithCommas(x) {
 function changeText () {
     currentDealCommission.innerHTML = `$${numberWithCommas(totalCommission)}`
     recommendedOneYearDeal.innerHTML = `The one year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedOneYearDealACV)}.`
+    recommendedThreeYearDeal.innerHTML = `The three year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedThreeYearDealACV)}.`
     expectedPayout.style = 'display: inline-block'
     percentageToQuotaHeader.style = 'display: inline-block'
     expectedPayoutHeader.style = 'display: inline-block'
@@ -137,6 +162,6 @@ function changeText () {
 
 button.addEventListener('click', getValues);
 button.addEventListener('click', calculateCommission);
-button.addEventListener('click', getRecommendedOneYearDeal);
+button.addEventListener('click', getRecommendedDeals);
 button.addEventListener('click', changeText);
 
