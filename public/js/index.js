@@ -156,16 +156,18 @@ function changeText () {
     recommendedDealDiv.style = 'display: inherit;'
     recommendedOneYearDeal.innerHTML = `The one year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedOneYearDealACV)}. <br><br>
     <b><i>Deal Structure:</i></b> <br>
-    <b>ACV:</b> ${numberWithCommas(proposedOneYearDealACV)}<br>
-    <b>Term Length:</b> 1 Year<br>
-    <b>Services Hours:</b> ${currentServicesHours}<br><br>
+    <b>ACV: </b> ${numberWithCommas(proposedOneYearDealACV)}<br>
+    <b>Term Length: </b> 1 Year<br>
+    <b>Services Hours: </b> ${currentServicesHours}<br>
+    <b>Discount Percentage: </b>${numberWithCommas((currentACV - proposedOneYearDealACV)/currentACV)*100}%<br><br>
     You'll get paid $${numberWithCommas(totalCommission)} on the one-year ACV.`
     
     recommendedThreeYearDeal.innerHTML = `The three year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedThreeYearDealACV)}. <br><br>
     <b><i>Deal Structure:</i></b> <br>
     <b>ACV:</b> ${numberWithCommas(proposedThreeYearDealACV)}<br>
     <b>Term Length:</b> 3 Year<br>
-    <b>Services Hours:</b> ${currentServicesHours}<br><br>
+    <b>Services Hours:</b> ${currentServicesHours}<br>
+    <b>Discount Percentage: </b>${numberWithCommas((currentACV - proposedThreeYearDealACV)/currentACV)*100}%<br><br>
 
     You'll get $${numberWithCommas(totalCommission - (multiYearCommission * 2))} on the ACV <br>
     and ${numberWithCommas(multiYearCommission * 2)} on the multi-year revenue.`
