@@ -52,22 +52,22 @@
         </div>
         <div class="current-deal-form">
             <div>
-                <h1> What is the structure of the current deal?</h1>
+                <h1>Provide a structure for a 2-year deal here:</h1>
             </div>
                 <form>
-                    <label>Current Term Length in Years:</label>
-                        <input type="number" name="current-term-length" id="current-term-length" placeholder="e.g. 2" required>
+                    <label>Term Length in Years:</label>
+                        <input type="number" name="current-term-length" id="current-term-length" value="2" readonly>
                     <br>
-                    <label>Current ACV:</label>
+                    <label>ACV:</label>
                         <input type="number" name="current-acv" id="current-acv" placeholder="e.g. $100,000" required>
                     <br>
-                    <label>Current Revenue in Years 2+:</label>
+                    <label>Revenue in Year 2:</label>
                         <input type="number" name="current-multi-year-revenue" id="current-multi-year-revenue" placeholder="e.g. $100,000" required>
                     <br>
-                    <label>Current Services Hours:</label>
+                    <label>Services Hours:</label>
                         <input type="number" name="current-services-hours" id="current-services-hours" placeholder="e.g. 80" required>
                     <br>    
-                    <label>Current Payment Terms:</label>
+                    <label>Payment Terms:</label>
                     <select id="current-payment-terms">
                         <option value="Annual" name="annual-payments" selected>Annual</option>
                         <option value="Semi-Annual or Quarterly" name="semi-annual-payments">Semi-Annual or Quarterly</option>
@@ -94,6 +94,10 @@
         <div>
             <h2 class="percentage-to-quota-output-header" id="percentage-to-quota-output-header" >Percentage to Quota:</h2>
             <h2 id="percentage-to-quota-output"></h2>
+            <div class="recommended-deals">
+                <div class="recommended-one-year-deal">
+                    <h2 id="recommended-one-year-deal"></h2></div>
+            </div>
         </div>
     </div>
     <script src=/js/index.js></script>

@@ -181,3 +181,12 @@ label {
     text-align: center;
     padding-bottom: 10rem;
 }
+
+.recommended-deals {
+    margin-top: 3rem;
+}
+
+.recommended-one-year-deal {
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+}

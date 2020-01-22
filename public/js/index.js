@@ -5,6 +5,8 @@ const percentageToQuotaHeader = document.getElementById('percentage-to-quota-out
 const expectedPayoutHeader = document.getElementById('expected-payout-header');
 const currentICROutput = document.getElementById('current-icr-output');
 const percentageToQuotaOutput = document.getElementById('percentage-to-quota-output');
+const recommendedOneYearDeal = document.getElementById('recommended-one-year-deal');
+const recommendedThreeYearDeal = document.getElementById('recommended-three-year-deal');
 
 
 // Declaring variable outside of the functions below so that they're in the global scope
@@ -40,12 +42,15 @@ let acceleratorMultiplierThree = 1.5
 let currentICR
 let currentPayout
 
+let proposedOneYearDealACV
+let proposedOneYearDealCommission
+
 function getValues () {
     quarterlyQuota = document.getElementById('quarterly-quota').value
     variableComp = document.getElementById('variable-comp').value
     currentAttainment = document.getElementById('current-attainment').value
     currentTermLength = document.getElementById('current-term-length').value
-    currentACV = document.getElementById('current-acv').value
+    currentACV = parseInt(document.getElementById('current-acv').value, 10)
     currentMultiYearRevenue = document.getElementById('current-multi-year-revenue').value
     currentServicesHours = document.getElementById('current-services-hours').value
     currentPaymentTerms = document.getElementById('current-payment-terms').value
@@ -53,6 +58,9 @@ function getValues () {
     displayedICR = (((variableComp / 4) / quarterlyQuota)*100).toFixed(2)
     percentageToQuota = ((+currentAttainment / quarterlyQuota)*100).toFixed(2)
     percentageToQuotaWithDeal = (((+currentAttainment + +currentACV) / quarterlyQuota)*100).toFixed(2)
+    // Variables for deal recommendations
+    proposedOneYearDealACV = currentACV
+    proposedThreeYearDealACV = currentACV
 }
 
 function getBasePayout() {
@@ -81,34 +89,45 @@ function getAcceleratorPayoutTwo () {
     }
 };
 
-function getACVCommission () {
+function getACVCommission (num) {
     getBasePayout();
     getAcceleratorPayoutOne();
     getAcceleratorPayoutTwo();
     if (percentageToQuotaWithDeal <= 100) {
-        acvCommission = (currentICR * currentACV)
+        acvCommission = (currentICR * num)
     } else if (percentageToQuotaWithDeal <= 125) {
-        acvCommission = ((+currentAttainment + +currentACV) - +quarterlyQuota) * (currentICR * acceleratorMultiplierOne) + basePayout
+        acvCommission = ((+currentAttainment + num) - +quarterlyQuota) * (currentICR * acceleratorMultiplierOne) + basePayout
     } else if (percentageToQuotaWithDeal <= 200) {
-        acvCommission = ((+currentAttainment + +currentACV) - (+quarterlyQuota * 1.25)) * (currentICR * acceleratorMultiplierTwo) + basePayout + acceleratorPayoutOne
+        acvCommission = ((+currentAttainment + num) - (+quarterlyQuota * 1.25)) * (currentICR * acceleratorMultiplierTwo) + basePayout + acceleratorPayoutOne
     } else if (percentageToQuotaWithDeal > 200) {
-        acvCommission = (+currentACV * (currentICR * acceleratorMultiplierThree))
+        acvCommission = (num * (currentICR * acceleratorMultiplierThree))
     }
 };
 
 function calculateCommission () {
     multiYearCommission = (multiYearICRPercentage * currentMultiYearRevenue)
     servicesCommission = (servicesICRPercentage * currentServicesHours)
-    getACVCommission()
+    getACVCommission(currentACV)
     totalCommission = acvCommission + multiYearCommission + servicesCommission
 };
 
+// "Recommendation" Algo
+
+function getRecommendedOneYearDeal () {
+    // 1 Year Option
+    while (acvCommission < totalCommission) {
+        proposedOneYearDealACV ++
+        getACVCommission(proposedOneYearDealACV)
+    }
+}
+
 function numberWithCommas(x) {
     return (x.toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
+};
 
 function changeText () {
     currentDealCommission.innerHTML = `$${numberWithCommas(totalCommission)}`
+    recommendedOneYearDeal.innerHTML = `The one year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedOneYearDealACV)}.`
     expectedPayout.style = 'display: inline-block'
     percentageToQuotaHeader.style = 'display: inline-block'
     expectedPayoutHeader.style = 'display: inline-block'
@@ -118,5 +137,6 @@ function changeText () {
 
 button.addEventListener('click', getValues);
 button.addEventListener('click', calculateCommission);
+button.addEventListener('click', getRecommendedOneYearDeal);
 button.addEventListener('click', changeText);
 
