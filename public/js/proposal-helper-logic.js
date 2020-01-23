@@ -118,7 +118,7 @@ function getThreeYearACVCommission (num) {
     } else if (percentageToQuotaWithDeal <= 200) {
         threeYearCommission = ((+currentAttainment + num) - (+quarterlyQuota * 1.25)) * (currentICR * acceleratorMultiplierTwo) + basePayout + acceleratorPayoutOne + (multiYearCommission * 2)
     } else if (percentageToQuotaWithDeal > 200) {
-        threeYearCommission = (num * (currentICR * acceleratorMultiplierThree)) +  (multiYearCommission * 2)
+        threeYearCommission = (num * (currentICR * acceleratorMultiplierThree)) +  (multiYearCommission * 2) // multiYearICRPercentage * proposedThreeYearDealACV
     }
 };
 
@@ -142,6 +142,7 @@ function getRecommendedDeals () {
     }
     while (threeYearCommission > totalCommission) {
         proposedThreeYearDealACV --
+        multiYearCommission = (multiYearICRPercentage * proposedThreeYearDealACV)
         getThreeYearACVCommission(proposedThreeYearDealACV)
     }
 };
