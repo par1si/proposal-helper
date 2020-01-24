@@ -11,21 +11,21 @@
     <meta property="og:title" content="Proposal Helper" />
     <meta property="og:image" content="/images/messages-preview.png"/>
     <link rel="icon" href="/images/icon2.png">
-    <link rel="stylesheet" type="text/css" href="/css/proposal-helper-styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/commission-checker-styles.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300&display=swap" rel="stylesheet">
 </head>
 <body id="body">
     <style> body  {transition: opacity, .75s; opacity:0; }</style>
     <div class="hero">
-            <div class="nav">
-                    <ul>
-                        <li><a href="/">Proposal Helper</a></li>
-                        <li>|</li>
-                        <li><a href="/commission-calculator">Commission Calculator</a></li>
-                    </ul>
-                    </div>
-            <div class="nav-container"></div>
-        <h1 class="hero-text">Digital <br> Proposal Helper</h1>
+        <div class="nav">
+            <ul>
+                <li><a href="/">Proposal Helper</a></li>
+                <li>|</li>
+                <li><a href="/commission-calculator">Commission Calculator</a></li>
+            </ul>
+        </div>
+        <div class="nav-container"></div>
+        <h1 class="hero-text">Digital <br> Commission Calculator</h1>
         <div class="hero-text-divider"></div>
         <div class="hero-subtitle">
             <p id="subtitle-text"></p>
@@ -60,11 +60,11 @@
         </div>
         <div class="current-deal-form">
             <div>
-                <h1>Provide a structure for a 2-year deal here:</h1>
+                <h1>What deal do you want to estimate your earnings on?</h1>
             </div>
                 <form>
                     <label>Term Length in Years:</label>
-                        <input type="number" name="current-term-length" id="current-term-length" value="2" readonly>
+                        <input type="number" name="current-term-length" id="current-term-length" placeholder="2" required>
                     <br>
                     <label>ACV:</label>
                         <input type="number" name="current-acv" id="current-acv" placeholder="e.g. $100,000" required>
@@ -103,17 +103,8 @@
             <h2 class="percentage-to-quota-output-header" id="percentage-to-quota-output-header"><b>Percentage to Quota:</b></h2>
             <h2 id="percentage-to-quota-output"></h2>
         </div>
-        <div id="recommended-deals-container">
-            <div class="recommended-deals">
-                <div class="recommended-one-year-deal">
-                    <h2 id="recommended-one-year-deal"></h2>
-                </div>
-                <div class="recommended-three-year-deal">
-                    <h2 id="recommended-three-year-deal"></h2>
-                </div>
-            </div>
-        </div>
-    <script src=/js/proposal-helper-logic.js></script>
-    <script src=/js/proposal-typewriter.js></script>
+    </div>
+    <script src=/js/commission-calculator-logic.js></script>
+    <script src=/js/typewriter.js></script>
 </body>
 </html>

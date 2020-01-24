@@ -16,6 +16,7 @@ h1 {
     font-weight: 100;
     margin-bottom: 2rem;
     padding: 0;
+    color: #4f0a2d;
 }
 
 h2 {
@@ -34,7 +35,7 @@ a { color: #000000 }
 
 .hero {
     position: relative;
-    background: url(../images/proposal-hero.jpg);
+    background: url(../images/commission-calculator-hero.jpg);
     background-size: cover;
     overflow: hidden;
     width: 100%;
@@ -101,7 +102,7 @@ li {
 }
 
 .form-body-container {
-    background-color: #c6cfc4;
+    background-color: #cac6cc;
     border-radius: 10px;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.25);
 }
@@ -219,45 +220,4 @@ label {
     margin-top: 5rem;
     text-align: center;
     padding-bottom: 10rem;
-}
-
-#recommended-deals-container {
-    display: none;
-}
-
-.recommended-deals {
-    margin: 10vh 10% -6vh;
-}
-
-.recommended-one-year-deal {
-    display: inline-block;
-    width: 40%;
-    background-color: #E6E7E9;
-    padding: 2rem;
-    vertical-align: middle;
-    height: 25rem;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    transition: box-shadow, .3s;
-}
-
-.recommended-one-year-deal:hover {
-    box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
-}
-
-.recommended-three-year-deal {
-    display: inline-block;
-    width: 40%;
-    margin-left: 5rem;
-    background-color: #E6E7E9;
-    padding: 2rem;
-    vertical-align: middle;
-    height: 25rem;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    transition: box-shadow, .3s;
-}
-
-.recommended-three-year-deal:hover {
-    box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
 }

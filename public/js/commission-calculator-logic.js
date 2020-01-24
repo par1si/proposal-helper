@@ -126,23 +126,7 @@ function calculateCommission () {
     multiYearCommission = (multiYearICRPercentage * currentMultiYearRevenue)
     servicesCommission = (servicesICRPercentage * currentServicesHours)
     getACVCommission(currentACV)
-    oneYearCommission = acvCommission
-    threeYearCommission = oneYearCommission + (multiYearCommission * 2)
     totalCommission = acvCommission + multiYearCommission + servicesCommission
-};
-
-// "Recommendation" Algos
-
-function getRecommendedDeals () {
-    while (acvCommission < totalCommission) {
-        proposedOneYearDealACV ++
-        getACVCommission(proposedOneYearDealACV)
-    }
-    while (threeYearCommission > totalCommission) {
-        proposedThreeYearDealACV --
-        multiYearCommission = (multiYearICRPercentage * proposedThreeYearDealACV)
-        getThreeYearACVCommission(proposedThreeYearDealACV)
-    }
 };
 
 function numberWithCommas(x) {
@@ -151,26 +135,6 @@ function numberWithCommas(x) {
 
 function changeText () {
     currentDealCommission.innerHTML = `$${numberWithCommas(totalCommission)}`
-
-    recommendedDealDiv.style = 'display: inherit;'
-    recommendedOneYearDeal.innerHTML = `The one year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedOneYearDealACV)}. <br><br>
-    <b><i>Deal Structure:</i></b> <br>
-    <b>ACV: </b> ${numberWithCommas(proposedOneYearDealACV)}<br>
-    <b>Term Length: </b> 1 Year<br>
-    <b>Services Hours: </b> ${currentServicesHours}<br>
-    <b>Discount Percentage: </b>${numberWithCommas(((currentACV - proposedOneYearDealACV)/currentACV)*100)}%<br><br>
-    You'll get paid $${numberWithCommas(totalCommission)} on the one-year ACV.`
-    
-    recommendedThreeYearDeal.innerHTML = `The three year deal that will retain this compensation has an ACV of $${numberWithCommas(proposedThreeYearDealACV)}. <br><br>
-    <b><i>Deal Structure:</i></b> <br>
-    <b>ACV:</b> ${numberWithCommas(proposedThreeYearDealACV)}<br>
-    <b>Term Length:</b> 3 Year<br>
-    <b>Services Hours:</b> ${currentServicesHours}<br>
-    <b>Discount Percentage: </b>${numberWithCommas(((currentACV - proposedThreeYearDealACV)/currentACV)*100)}%<br><br>
-
-    You'll get $${numberWithCommas(totalCommission - (multiYearCommission * 2))} on the ACV <br>
-    and ${numberWithCommas(multiYearCommission * 2)} on the multi-year revenue.`
-
     expectedPayout.style = 'display: inline-block'
     percentageToQuotaHeader.style = 'display: inline-block'
     expectedPayoutHeader.style = 'display: inline-block'
@@ -180,6 +144,5 @@ function changeText () {
 
 button.addEventListener('click', getValues);
 button.addEventListener('click', calculateCommission);
-button.addEventListener('click', getRecommendedDeals);
 button.addEventListener('click', changeText);
 
