@@ -99,9 +99,11 @@ function getACVCommission (num) {
     if (percentageToQuotaWithDeal <= 100) {
         acvCommission = (currentICR * num)
     } else if (percentageToQuotaWithDeal <= 125) {
-        acvCommission = ((+currentAttainment + num) - +quarterlyQuota) * (currentICR * acceleratorMultiplierOne) + basePayout
+        acvCommission = ((+currentAttainment + num) - +quarterlyQuota) * (currentICR * acceleratorMultiplierOne) + (basePayout * (percentageToQuote
+            - percentageToQuota)/100)
     } else if (percentageToQuotaWithDeal <= 200) {
-        acvCommission = ((+currentAttainment + num) - (+quarterlyQuota * 1.25)) * (currentICR * acceleratorMultiplierTwo) + basePayout + acceleratorPayoutOne
+        acvCommission = ((+currentAttainment + num) - (+quarterlyQuota * 1.25)) * (currentICR * acceleratorMultiplierTwo) + basePayout + (acceleratorPayoutOne * (percentageToQuote
+            - percentageToQuota)/100)
     } else if (percentageToQuotaWithDeal > 200) {
         acvCommission = (num * (currentICR * acceleratorMultiplierThree))
     }
@@ -114,9 +116,11 @@ function getThreeYearACVCommission (num) {
     if (percentageToQuotaWithDeal <= 100) {
         threeYearCommission = (currentICR * num) + (multiYearCommission * 2)
     } else if (percentageToQuotaWithDeal <= 125) {
-        threeYearCommission = ((+currentAttainment + num) - +quarterlyQuota) * (currentICR * acceleratorMultiplierOne) + basePayout + (multiYearCommission * 2)
+        threeYearCommission = ((+currentAttainment + num) - +quarterlyQuota) * (currentICR * acceleratorMultiplierOne) + (basePayout * (percentageToQuote
+            - percentageToQuota)/100) + (multiYearCommission * 2)
     } else if (percentageToQuotaWithDeal <= 200) {
-        threeYearCommission = ((+currentAttainment + num) - (+quarterlyQuota * 1.25)) * (currentICR * acceleratorMultiplierTwo) + basePayout + acceleratorPayoutOne + (multiYearCommission * 2)
+        threeYearCommission = ((+currentAttainment + num) - (+quarterlyQuota * 1.25)) * (currentICR * acceleratorMultiplierTwo) + basePayout + (acceleratorPayoutOne * (percentageToQuote
+            - percentageToQuota)/100) + (multiYearCommission * 2)
     } else if (percentageToQuotaWithDeal > 200) {
         threeYearCommission = (num * (currentICR * acceleratorMultiplierThree)) +  (multiYearCommission * 2) // multiYearICRPercentage * proposedThreeYearDealACV
     }
