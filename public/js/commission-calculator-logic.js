@@ -1,3 +1,4 @@
+// Defining Dom Elements
 const button = document.getElementById('submit');
 const currentDealCommission = document.getElementById('current-deal-commission');
 const expectedPayout = document.getElementById('expected-payout');
@@ -10,43 +11,23 @@ const recommendedThreeYearDeal = document.getElementById('recommended-three-year
 const recommendedDealDiv = document.getElementById('recommended-deals-container')
 
 
-// Declaring variable outside of the functions below so that they're in the global scope
-let quarterlyQuotaValue
-let variableCompValue
-let currentAttainment
 
-let percentageToQuota
-let percentageToQuotaWithDeal
+// Setting values & commission logic
+let ICR = 0
+let acceleratorOne = 0
+let acceleratorTwo = 0
+let acceleratorThree = 0
 
-let currentTermLength
-let currentACV
-let currentMultiYearRevenue
-let currentServicesHours
-let currentPaymentTerms
+let acceleratorBreakpointOne = 0
+let acceleratorBreakpointTwo = 0
+let acceleratorBreakpointThree = 0
 
-let multiYearCommission
-let servicesCommission
-let acvCommission
-let subTotalCommission
-let totalCommission
+const multiYearCommissionPercentage = .04
+let multiYearCommission = 0
 
-let basePayout
-let acceleratorPayoutOne
-let acceleratorPayoutTwo
+let percentageToQuota = 0
+let percentageToQuotaWithDeal = 0
 
-let multiYearICRPercentage = .04
-let servicesICRPercentage = .01
-let acceleratorMultiplierOne = 2
-let acceleratorMultiplierTwo = 2.5
-let acceleratorMultiplierThree = 1.5
-
-let currentICR
-let currentPayout
-
-let proposedOneYearDealACV
-let proposedOneYearDealCommission
-let oneYearCommission
-let threeYearCommission
 
 function getValues () {
     quarterlyQuota = document.getElementById('quarterly-quota').value
@@ -57,63 +38,50 @@ function getValues () {
     currentMultiYearRevenue = document.getElementById('current-multi-year-revenue').value
     currentServicesHours = document.getElementById('current-services-hours').value
     currentPaymentTerms = document.getElementById('current-payment-terms').value
-    currentICR = (((variableComp / 4) / quarterlyQuota)).toFixed(3)
+    ICR = (((variableComp / 4) / quarterlyQuota)).toFixed(3)
     displayedICR = (((variableComp / 4) / quarterlyQuota)*100).toFixed(2)
+    acceleratorOne = ICR * 2
+    acceleratorTwo = ICR * 2.5
+    acceleratorThree = ICR * 1.5
+    acceleratorBreakpointOne = quarterlyQuota
+    acceleratorBreakpointTwo = quarterlyQuota * 1.25
+    acceleratorBreakpointThree = quarterlyQuota * 2
     percentageToQuota = ((+currentAttainment / quarterlyQuota)*100).toFixed(2)
     percentageToQuotaWithDeal = (((+currentAttainment + +currentACV) / quarterlyQuota)*100).toFixed(2)
-    // Variables for deal recommendations
-    proposedOneYearDealACV = currentACV
-    proposedThreeYearDealACV = currentACV
 }
 
-function getBasePayout() {
-    if (percentageToQuota <= 100) {
-    basePayout = (+quarterlyQuota - +currentAttainment) * currentICR
-    } else {
-    basePayout = 0;
+
+let j = 0
+let acvCommission = 0
+
+function getACVCommission () {
+    acvCommission = 0;
+    for (i = +currentAttainment; i < (+currentAttainment + currentACV); i++) {
+        j = i + 1
+        if (i < acceleratorBreakpointOne) {
+            acvCommission = acvCommission + ((j - i) * ICR)
+        } else if (i >= acceleratorBreakpointOne && i < acceleratorBreakpointTwo){
+            acvCommission = acvCommission + ((j - i) * acceleratorOne)
+        } else if (i >= acceleratorBreakpointTwo && i < acceleratorBreakpointThree){
+            acvCommission = acvCommission + ((j - i) * acceleratorTwo)
+        } else if (i >= acceleratorBreakpointThree) {
+            acvCommission = acvCommission + ((j - i) * acceleratorThree)
+        }
     }
-};
+}
 
-function getAcceleratorPayoutOne () {
-    if ((percentageToQuota <= 125) && (percentageToQuotaWithDeal >= 100)) {
-    acceleratorPayoutOne = (+quarterlyQuota * .25) * (currentICR * acceleratorMultiplierOne)
-    } else if (((percentageToQuota <= 125) && (percentageToQuota > 100)) && (percentageToQuotaWithDeal >= 100)) {
-    acceleratorPayoutOne = ((+quarterlyQuota * 1.25) - +currentAttainment) * (currentICR * acceleratorMultiplierOne)
-    } else {
-    acceleratorPayoutOne = 0
-    }
-};
+function getMultiYearCommission () {
+    multiYearCommission = currentMultiYearRevenue * multiYearCommissionPercentage
+}
 
-function getAcceleratorPayoutTwo () {
-    if (((percentageToQuota <= 200) && (percentageToQuota >= 125)) && (percentageToQuotaWithDeal >= 125)) {
-    acceleratorPayoutTwo = ((+quarterlyQuota * .75) - +currentAttainment) * (currentICR * acceleratorMultiplierOne)
-    } else {
-    acceleratorPayoutTwo = 0
-    }
-};
+function getCommission () {
+    getACVCommission();
+    getMultiYearCommission();
+    totalCommission = acvCommission + multiYearCommission
+}
 
-function getACVCommission (num) {
-    getBasePayout();
-    getAcceleratorPayoutOne();
-    getAcceleratorPayoutTwo();
-    if (percentageToQuotaWithDeal <= 100) {
-        acvCommission = (currentICR * num)
-    } else if (percentageToQuotaWithDeal <= 125) {
-        acvCommission = ((+currentAttainment + num) - +quarterlyQuota) * (currentICR * acceleratorMultiplierOne) + basePayout
-    } else if (percentageToQuotaWithDeal <= 200) {
-        acvCommission = ((+currentAttainment + num) - (+quarterlyQuota * 1.25)) * (currentICR * acceleratorMultiplierTwo) + basePayout + acceleratorPayoutOne
-    } else if (percentageToQuotaWithDeal > 200) {
-        acvCommission = (num * (currentICR * acceleratorMultiplierThree))
-    }
-};
 
-function calculateCommission () {
-    multiYearCommission = (multiYearICRPercentage * currentMultiYearRevenue)
-    servicesCommission = (servicesICRPercentage * currentServicesHours)
-    getACVCommission(currentACV)
-    totalCommission = acvCommission + multiYearCommission + servicesCommission
-};
-
+// Changing Text
 function numberWithCommas(x) {
     return (x.toFixed(2)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
@@ -128,6 +96,6 @@ function changeText () {
 };
 
 button.addEventListener('click', getValues);
-button.addEventListener('click', calculateCommission);
+button.addEventListener('click', getCommission);
 button.addEventListener('click', changeText);
 
