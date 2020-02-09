@@ -17,12 +17,15 @@ let ICR = 0
 let acceleratorOne = 0
 let acceleratorTwo = 0
 let acceleratorThree = 0
+let acceleratorFour = 0
 
 let acceleratorBreakpointOne = 0
 let acceleratorBreakpointTwo = 0
 let acceleratorBreakpointThree = 0
+let acceleratorBreakpointFour = 0
 
 const multiYearCommissionPercentage = .04
+const servicesCommissionPercentage = .04
 let multiYearCommission = 0
 
 let percentageToQuota = 0
@@ -37,15 +40,16 @@ function getValues () {
     currentACV = parseInt(document.getElementById('current-acv').value, 10)
     currentMultiYearRevenue = document.getElementById('current-multi-year-revenue').value
     currentServicesHours = document.getElementById('current-services-hours').value
-    currentPaymentTerms = document.getElementById('current-payment-terms').value
     ICR = (((variableComp / 4) / quarterlyQuota)).toFixed(3)
     displayedICR = (((variableComp / 4) / quarterlyQuota)*100).toFixed(2)
     acceleratorOne = ICR * 2
     acceleratorTwo = ICR * 2.5
-    acceleratorThree = ICR * 1.5
+    acceleratorThree = ICR * 2
+    acceleratorFour = ICR * 1.5
     acceleratorBreakpointOne = quarterlyQuota
     acceleratorBreakpointTwo = quarterlyQuota * 1.25
-    acceleratorBreakpointThree = quarterlyQuota * 2
+    acceleratorBreakpointThree = quarterlyQuota * 1.5
+    acceleratorBreakpointFour = quarterlyQuota * 2
     percentageToQuota = ((+currentAttainment / quarterlyQuota)*100).toFixed(2)
     percentageToQuotaWithDeal = (((+currentAttainment + +currentACV) / quarterlyQuota)*100).toFixed(2)
 }
@@ -64,20 +68,36 @@ function getACVCommission () {
             acvCommission = acvCommission + ((j - i) * acceleratorOne)
         } else if (i >= acceleratorBreakpointTwo && i < acceleratorBreakpointThree){
             acvCommission = acvCommission + ((j - i) * acceleratorTwo)
-        } else if (i >= acceleratorBreakpointThree) {
+        } else if (i >= acceleratorBreakpointThree && i < acceleratorBreakpointFour) {
             acvCommission = acvCommission + ((j - i) * acceleratorThree)
+        } else if (i >= acceleratorBreakpointFour) {
+            acvCommission = acvCommission + ((j - i) * acceleratorFour)
         }
     }
 }
 
 function getMultiYearCommission () {
+    if (+currentTermLength > 1) {
     multiYearCommission = currentMultiYearRevenue * multiYearCommissionPercentage
+    } else {
+    multiYearCommission = 0
+    document.getElementById('current-multi-year-revenue').value = 0
+    }
+}
+
+function getServicesCommission (acv) {
+    if ((+currentServicesHours * 250) >= acv * .25) {
+        servicesCommission = (+currentServicesHours * 250) * servicesCommissionPercentage
+    } else {
+        servicesCommission = 0;
+    }
 }
 
 function getCommission () {
     getACVCommission();
     getMultiYearCommission();
-    totalCommission = acvCommission + multiYearCommission
+    getServicesCommission(currentACV);
+    totalCommission = acvCommission + multiYearCommission + servicesCommission
 }
 
 
@@ -87,10 +107,14 @@ function numberWithCommas(x) {
 };
 
 function changeText () {
-    currentDealCommission.innerHTML = `$${numberWithCommas(totalCommission)}`
-    expectedPayout.style = 'display: inline-block'
+    currentDealCommission.innerHTML = `Your commission on this deal is $${numberWithCommas(totalCommission)}. <br>
+    <br>
+    $${numberWithCommas(acvCommission)} of that comes from ACV, <br>
+    $${numberWithCommas(servicesCommission)} of that comes from the services bonus, <br>
+    and $${multiYearCommission} of that comes from multi-year bonuses.`
+    expectedPayout.style = 'display: block'
     percentageToQuotaHeader.style = 'display: inline-block'
-    expectedPayoutHeader.style = 'display: inline-block'
+    expectedPayoutHeader.style = 'display: block'
     percentageToQuotaOutput.innerHTML = percentageToQuotaWithDeal + `%`
     percentageToQuotaHeader.scrollIntoView()
 };

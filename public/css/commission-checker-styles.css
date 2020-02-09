@@ -137,6 +137,7 @@ form {
 select {
     outline: none;
     font-size: 14px;
+    margin-bottom: 2rem;
 }
 
 input::-webkit-outer-spin-button,
@@ -210,6 +211,12 @@ label {
 .expected-payout {
     display: none;
     margin-bottom: 1rem;
+    margin-top: 3rem;
+    text-align: center;
+}
+
+#current-deal-commission {
+    margin-bottom: 3rem;
 }
 
 .percentage-to-quota-output-header {

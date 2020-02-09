@@ -136,6 +136,7 @@ form {
 select {
     outline: none;
     font-size: 14px;
+    margin-bottom: 2rem;
 }
 
 input::-webkit-outer-spin-button,
@@ -229,7 +230,7 @@ label {
     margin: 10vh 10% -6vh;
 }
 
-.recommended-one-year-deal {
+.smaller-recommended-deal {
     display: inline-block;
     width: 40%;
     background-color: #E6E7E9;
@@ -241,11 +242,11 @@ label {
     transition: box-shadow, .3s;
 }
 
-.recommended-one-year-deal:hover {
+.smaller-recommended-deal:hover {
     box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
 }
 
-.recommended-three-year-deal {
+.larger-recommended-deal {
     display: inline-block;
     width: 40%;
     margin-left: 5rem;
@@ -258,6 +259,6 @@ label {
     transition: box-shadow, .3s;
 }
 
-.recommended-three-year-deal:hover {
+.larger-recommended-deal:hover {
     box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.25);
 }

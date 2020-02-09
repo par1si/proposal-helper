@@ -19,13 +19,13 @@
     <div class="hero">
             <div class="nav">
                     <ul>
-                        <li><a href="/">Proposal Helper</a></li>
+                        <li><a href="/">Proposal Generator</a></li>
                         <li>|</li>
                         <li><a href="/commission-calculator">Commission Calculator</a></li>
                     </ul>
                     </div>
             <div class="nav-container"></div>
-        <h1 class="hero-text">Digital <br> Proposal Helper</h1>
+        <h1 class="hero-text">Digital <br> Proposal Generator</h1>
         <div class="hero-text-divider"></div>
         <div class="hero-subtitle">
             <p id="subtitle-text"></p>
@@ -38,10 +38,10 @@
         <div class="quarterly-variable-comp-div">
             <form class="quarterly-variable-comp-div">
                 <label>Quarterly Quota:</label>
-                    <input type="number" name="quarterly-quota" id="quarterly-quota" placeholder="e.g. $237,500" required>
+                    <input type="number" name="quarterly-quota" id="quarterly-quota" placeholder="e.g. $262,500" required>
                 <br>
                 <label>Annualized Variable Compensation:</label>
-                    <input type="number" name="variable-comp" id="variable-comp" placeholder="e.g. $80,000" required>
+                    <input type="number" name="variable-comp" id="variable-comp" placeholder="e.g. $82,500" required>
             </form>
         </div>
         </div>
@@ -60,26 +60,24 @@
         </div>
         <div class="current-deal-form">
             <div>
-                <h1>Provide a structure for a 2-year deal here:</h1>
+                <h1>Provide a deal structure here:</h1>
             </div>
                 <form>
                     <label>Term Length in Years:</label>
-                        <input type="number" name="current-term-length" id="current-term-length" value="2" readonly>
+                        <select class= "current-term-length" name= "current-term-length" id="current-term-length">
+                            <option value="1" name="one-year" selected>One Year</option>
+                            <option value="2" name="two-year">Two Year</option>
+                            <option value="3" name="three-year">Three Year</option>
+                        </select>
                     <br>
-                    <label>ACV:</label>
+                    <label>ACV on the current proposal:</label>
                         <input type="number" name="current-acv" id="current-acv" placeholder="e.g. $100,000" required>
                     <br>
-                    <label>Revenue in Year 2:</label>
+                    <label>Revenue in Years 2+:</label>
                         <input type="number" name="current-multi-year-revenue" id="current-multi-year-revenue" placeholder="e.g. $100,000" required>
                     <br>
                     <label>Services Hours:</label>
                         <input type="number" name="current-services-hours" id="current-services-hours" placeholder="e.g. 80" required>
-                    <br>    
-                    <label>Payment Terms:</label>
-                    <select id="current-payment-terms">
-                        <option value="Annual" name="annual-payments" selected>Annual</option>
-                        <option value="Semi-Annual or Quarterly" name="semi-annual-payments">Semi-Annual or Quarterly</option>
-                    </select>
                     <br>
                 </form>
                 <div>
@@ -105,11 +103,11 @@
         </div>
         <div id="recommended-deals-container">
             <div class="recommended-deals">
-                <div class="recommended-one-year-deal">
-                    <h2 id="recommended-one-year-deal"></h2>
+                <div class="smaller-recommended-deal">
+                    <h2 id="smaller-recommended-deal"></h2>
                 </div>
-                <div class="recommended-three-year-deal">
-                    <h2 id="recommended-three-year-deal"></h2>
+                <div class="larger-recommended-deal">
+                    <h2 id="larger-recommended-deal"></h2>
                 </div>
             </div>
         </div>

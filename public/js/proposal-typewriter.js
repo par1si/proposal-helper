@@ -1,8 +1,6 @@
-const body = document.getElementById('body');
-
 // Typewriter effect
 let i = 0;
-const txt = 'Build a 1 & 3 year proposal easily, below.';
+const txt = 'Build proposal alternatives easily, below.';
 const speed = 30;
 
 function typeWriter() {
